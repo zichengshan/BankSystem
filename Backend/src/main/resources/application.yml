@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/bank?characterEncoding=utf8&useSSL=false&serverTimezone=UTC
+    username: root
+    password: 1061955983
+server:
+  port: 8081
+  servlet:
+    context-path: /bankSys
+mybatis:
+  mapper-locations: com/team10/mapper/*.xml
+logging:
+  level:
+    com:
+      team10:
+        mapper: debug
+
+#pagehelper:
+#  helper-dialect: mysql
