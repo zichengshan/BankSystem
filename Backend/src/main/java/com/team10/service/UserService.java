@@ -17,7 +17,7 @@ public class UserService {
     private CheckParamService checkParamService;
 
     public User login(String username, String password){
-        return userMapper.detail(Maps.build().put("username",username).put("password",password).getMap());
+        return userMapper.login(Maps.build().put("username",username).put("password",password).getMap());
     }
     public int create(User user){
         return userMapper.create(user);
