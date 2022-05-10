@@ -43,7 +43,7 @@ export default function Login(props) {
                     // Call the changeLoginStatus() function passed from App.js to update the user login data
                     props.updateUserInfo(data)
                 } else if (data.status === 500) {
-                    setLoginStatusText("Username or password is wrong")
+                    setLoginStatusText(data.msg)
                 }
             })
             .catch((error) => {
