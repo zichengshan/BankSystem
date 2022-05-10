@@ -14,9 +14,13 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
     public TokenInterceptor tokenInterceptor(){
         return new TokenInterceptor();
     }
+    public IPInterceptor IPInterceptor(){
+        return new IPInterceptor();
+    }
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(tokenInterceptor()).addPathPatterns("/**").excludePathPatterns("/login","static/**","/user/create");
+        registry.addInterceptor(IPInterceptor()).addPathPatterns("/**");
 
     }
     @Override

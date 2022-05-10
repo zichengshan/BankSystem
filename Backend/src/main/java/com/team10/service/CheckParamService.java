@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * @program: bankSys
- * @description:
+ * @description: Check if param is valuable
  * @author: Mr. Su
  * @create: 2022-05-05 20:15
  **/

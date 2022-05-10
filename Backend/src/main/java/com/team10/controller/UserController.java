@@ -2,6 +2,7 @@ package com.team10.controller;
 
 import com.team10.entity.User;
 import com.team10.framework.exception.MyException;
+import com.team10.service.IpService;
 import com.team10.service.UserService;
 import com.team10.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,7 @@ public class UserController {
         User user = (User) request.getAttribute("user");
         System.out.println("Authorization user is " + user.getId());
         System.out.println("Deposit action is operated in user: " + id);
+//        IpService.checkOriginIP(request);
         //Start fix code
         //Check user has privilege to deposit id
 //        if(user.getId() !=  id){
@@ -56,5 +58,7 @@ public class UserController {
         Double balance = userService.withdrawal(id, map.get("amount"));
         return Result.ok(balance);
     }
+
+
 
 }

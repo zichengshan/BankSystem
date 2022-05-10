@@ -1,2 +1,5 @@
 /Backend/target/
 /.idea/
+/Frontend/node_modules/
+Backend/src/main/resources/application.yml
+Backend/Backend.iml
