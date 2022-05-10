@@ -5,6 +5,7 @@ import com.team10.framework.exception.MyException;
 import com.team10.mapper.UserMapper;
 import com.team10.utils.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.sql.*;
@@ -18,12 +19,17 @@ public class UserService {
     @Autowired
     private CheckParamService checkParamService;
 
+    @Value("${spring.datasource.username}")
+    public String databaseUserName;
+    @Value("${spring.datasource.password}")
+    public String databasePassword;
+
     public User insecureLogin(String username, String password) {
         Connection connection = null;
         //Database password info
         String url = "jdbc:mysql://localhost:3306/bank?characterEncoding=utf8&useSSL=false&serverTimezone=UTC";
-        String name = "bankDev";
-        String pwd = "dev123";
+        String name = databaseUserName; //"bankDev";
+        String pwd = databasePassword; //"dev123";
         User user = null;
 
         try {
