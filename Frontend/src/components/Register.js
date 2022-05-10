@@ -60,6 +60,7 @@ export default function Register() {
         }))
 
         if (nameIsValid && passwordIsValid) {
+
             fetch('http://localhost:8081/bankSys/user/create', {
                 method: 'POST',
                 headers: {

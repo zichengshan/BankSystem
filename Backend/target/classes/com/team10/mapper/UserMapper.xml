@@ -13,11 +13,6 @@
         <result column="password" property="password"/>
         <result column="balance" property="balance"/>
     </resultMap>
-    <select id="login" resultMap="User">
-        select * from user
-        where username = #{username} and password = #{password}
-            limit 1
-    </select>
     <select id="detail" resultMap="User">
         select * from user
         <include refid="UserFindCriteria"></include>
