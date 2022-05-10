@@ -18,8 +18,8 @@ import java.util.Map;
 public class UserController {
     @Autowired
     private UserService userService;
-    @Autowired
-    private HttpServletRequest request;
+//    @Autowired
+//    private ;
 
     @PostMapping("/create")
     public Result create(@RequestBody User user) {
@@ -35,13 +35,17 @@ public class UserController {
     }
 
     @PostMapping("/deposit")
-    public Result deposit(@RequestBody Map<String,String> map) {
+    public Result deposit(@RequestBody Map<String,String> map, HttpServletRequest request) {
         Integer id = Integer.parseInt(map.get("id"));
-//      Check user has privilege to deposit id
-//        User user = (User) request.getAttribute("user");
+        User user = (User) request.getAttribute("user");
+        System.out.println("Authorization user is " + user.getId());
+        System.out.println("Deposit action is operated in user: " + id);
+        //Start fix code
+        //Check user has privilege to deposit id
 //        if(user.getId() !=  id){
 //            throw new MyException("Invalid Id");
 //        }
+        //End Fix code
         Double balance = userService.deposit(id, map.get("amount"));
         return Result.ok(balance);
     }
