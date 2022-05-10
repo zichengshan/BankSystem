@@ -36,7 +36,6 @@ export default function Register() {
         return result && (data.length <= 127 && data.length >= 1)
     }
 
-
     function updateFormData(event) {
         event.preventDefault()
         console.log(event.target.value)
