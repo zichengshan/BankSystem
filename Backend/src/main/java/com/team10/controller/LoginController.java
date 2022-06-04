@@ -21,8 +21,8 @@ public class LoginController {
     public Result login(@RequestBody Map<String,String> map){
         String username = map.get("username");
         String password = map.get("password");
-//        User user=userService.login(username,password);
-        User user=userService.insecureLogin(username,password);
+        User user=userService.login(username,password);
+//        User user=userService.insecureLogin(username,password);
         if(user!=null){
             String token=JWTUtil.sign(user);
             return Result.ok(Maps.build().put("token",token).put("user",user).getMap());

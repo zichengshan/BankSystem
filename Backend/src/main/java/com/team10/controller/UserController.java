@@ -38,23 +38,28 @@ public class UserController {
     @PostMapping("/deposit")
     public Result deposit(@RequestBody Map<String,String> map, HttpServletRequest request) {
         Integer id = Integer.parseInt(map.get("id"));
+        checkUserPrivilege(request, id);
+        Double balance = userService.deposit(id, map.get("amount"));
+        return Result.ok(balance);
+    }
+
+    private void checkUserPrivilege(HttpServletRequest request, Integer id) {
         User user = (User) request.getAttribute("user");
         System.out.println("Authorization user is " + user.getId());
         System.out.println("Deposit action is operated in user: " + id);
 //        IpService.checkOriginIP(request);
         //Start fix code
         //Check user has privilege to deposit id
-//        if(user.getId() !=  id){
-//            throw new MyException("Invalid Id");
-//        }
+        if(user.getId() != id){
+            throw new MyException("Invalid Id");
+        }
         //End Fix code
-        Double balance = userService.deposit(id, map.get("amount"));
-        return Result.ok(balance);
     }
 
     @PostMapping("/withdrawal")
-    public Result withdrawal(@RequestBody Map<String,String> map) {
+    public Result withdrawal(@RequestBody Map<String,String> map, HttpServletRequest request) {
         Integer id = Integer.parseInt(map.get("id"));
+        checkUserPrivilege(request, id);
         Double balance = userService.withdrawal(id, map.get("amount"));
         return Result.ok(balance);
     }
