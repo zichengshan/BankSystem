@@ -1,6 +1,6 @@
-import React from "react";
-// zishan01
-// 12345
+import React from "react"
+let md5 = require('md5')
+
 
 export default function Register() {
     // registerStatusText is used to save the message whether the account is registered successfully or not
@@ -38,7 +38,7 @@ export default function Register() {
 
     function updateFormData(event) {
         event.preventDefault()
-        console.log(event.target.value)
+        // console.log(event.target.value)
         setFormData(prevFormData => {
             return {
                 ...prevFormData,
@@ -59,7 +59,11 @@ export default function Register() {
         }))
 
         if (nameIsValid && passwordIsValid) {
-
+            setFormData({
+                username: formData.username,
+                password:md5(formData.password)
+            })
+            formData.password = md5(formData.password);
             fetch('http://localhost:8081/bankSys/user/create', {
                 method: 'POST',
                 headers: {
@@ -107,7 +111,7 @@ export default function Register() {
 
 
                     <input
-                        type="text"
+                        type="password"
                         placeholder="password"
                         name="password"
                         onChange={updateFormData}

@@ -1,4 +1,5 @@
 import React from "react";
+let md5 = require('md5')
 
 export default function Login(props) {
     const [loginFormData, setLoginFormData] = React.useState(
@@ -29,6 +30,14 @@ export default function Login(props) {
      */
     function handleSubmit(event) {
         event.preventDefault()
+        let md5 = require('md5');
+
+        setLoginFormData({
+            username: loginFormData.username,
+            password:md5(loginFormData.password)
+        })
+        loginFormData.password = md5(loginFormData.password);
+
         fetch('http://localhost:8081/bankSys/login', {
             method: 'POST',
             headers: {
@@ -64,7 +73,7 @@ export default function Login(props) {
                     className="login-form-input"
                 />
                 <input
-                    type="text"
+                    type="password"
                     placeholder="password"
                     name="password"
                     onChange={updateUserLoginData}
